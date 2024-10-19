@@ -35,12 +35,16 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "link": "eslint --ext js,ts,tsx src --max-warnings 5",
-    "build": "react-scripts build",
+    "lint": "eslint --ext js,ts,tsx src --max-warnings 5",
+    "build": "npm run build-ts && npm run build-css",
     "test": "react-scripts test",
+    "test:nowatch": "cross-env CI=true react-scripts test",
     "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "rm -rf ./dist/docs && build-storybook -o ./dist/docs"
+    "build-ts": "tsc -p tsconfig.build.json",
+    "build-css": "node-sass ./src/styles/index.scss ./dist/index.css",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public",
+    "prepublishOnly": "npm run test:nowatch && npm run lint && npm run build"
   },
   "husky": {
     "hooks": {
