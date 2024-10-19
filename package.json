@@ -43,8 +43,8 @@
     "eject": "react-scripts eject",
     "build-ts": "tsc -p tsconfig.build.json",
     "build-css": "sass ./src/styles/index.scss ./dist/index.css",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+		"storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "rm -rf ./dist/docs && build-storybook -o ./dist/docs",
     "prepublish": "npm run build"
   },
   "husky": {
