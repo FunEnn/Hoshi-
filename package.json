@@ -1,0 +1,110 @@
+{
+  "name": "ennhoshi",
+  "version": "0.1.1",
+  "description": "React components library",
+  "author": "Enn",
+  "private": false,
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "keywords": [
+    "Component",
+    "UI",
+    "React"
+  ],
+  "homepage": "https://gitee.com/Enn01/hoshi-component-library",
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/Enn01/hoshi-component-library"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "axios": "^1.7.7",
+    "classnames": "^2.5.1",
+    "react-transition-group": "^4.4.5"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "clean": "rimraf ./dist",
+    "link": "eslint --ext js,ts,tsx src --max-warnings 5",
+    "build": "npm run clean && npm run build-ts && npm run build-css",
+    "test": "react-scripts test",
+    "test:nowatch": "cross-env CI=true react-scripts test",
+    "eject": "react-scripts eject",
+    "build-ts": "tsc -p tsconfig.build.json",
+    "build-css": "sass ./src/styles/index.scss ./dist/index.css",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "prepublish": "npm run build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run link"
+    }
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "plugin:storybook/recommended"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^1.9.0",
+    "@storybook/addon-essentials": "^8.3.5",
+    "@storybook/addon-info": "^5.3.21",
+    "@storybook/addon-interactions": "^8.3.5",
+    "@storybook/addon-links": "^8.3.5",
+    "@storybook/addon-onboarding": "^8.3.5",
+    "@storybook/blocks": "^8.3.5",
+    "@storybook/cli": "^8.3.5",
+    "@storybook/preset-create-react-app": "^8.3.5",
+    "@storybook/react": "^8.3.5",
+    "@storybook/react-webpack5": "^8.3.5",
+    "@storybook/test": "^8.3.5",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/classnames": "^2.3.1",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.112",
+    "@types/react": "^18.3.10",
+    "@types/react-dom": "^18.3.0",
+    "@types/react-transition-group": "^4.4.11",
+    "@types/storybook__addon-info": "^5.2.8",
+    "eslint-plugin-storybook": "^0.9.0",
+    "web-vitals": "^2.1.4",
+    "typescript": "^4.9.5",
+    "prop-types": "^15.8.1",
+    "react-docgen-typescript-loader": "^3.7.2",
+    "react-scripts": "5.0.1",
+    "react-dom": "^18.3.1",
+    "react": "^18.3.1",
+    "cluster": "^0.7.7",
+    "sass": "^1.79.4",
+    "storybook": "^8.3.5",
+    "webpack": "^5.95.0"
+  }
+}
