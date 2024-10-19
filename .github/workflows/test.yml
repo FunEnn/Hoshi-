@@ -1,31 +1,44 @@
-: Deploy Story
+name: Node.js CI with Storybook
 
 on:
   push:
     branches:
       - master
 
-:
-  build:
+jobs:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [stable]
+
     steps:
-      - name: Checkout code
-        uses: actions/@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 'stable'
+    - name: Set up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
 
-      - name: Install dependencies
-        run: npm install
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
 
-      - name: Build Story
-        run: npm run build-story
+    - name: Install dependencies
+      run: npm ci
 
-      - name: Deploy to GitHub Pages
-        uses: peace-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./storybook-static
+    - name: Build Storybook
+      run: npm run build-storybook
+
+    - name: Deploy to GitHub Pages
+      if: success()
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./storybook-static
