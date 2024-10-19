@@ -20,10 +20,10 @@ jobs:
 
       - name: Setup  env
         run: |
-          pnpm install
+          npm install
       - name: Generate public files
         run: |
-          pnpm run build-storybook
+          npm run build-storybook
 
       - name: Deploy
         env:
